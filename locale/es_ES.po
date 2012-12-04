@@ -1,0 +1,223 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "error:getmail.server:"
+msgid "Don't available \"getmail\" method in model."
+msgstr "No se encuentra el método \"getmail\" en este modelo."
+
+msgctxt "error:getmail.server:"
+msgid "Don't available folder in Email Server."
+msgstr "No existe este directorio en el servidor."
+
+msgctxt "error:getmail.server:"
+msgid ""
+"Error IMAP Server:\n"
+"%s"
+msgstr ""
+"Error IMAP Server:\n"
+"%s"
+
+msgctxt "error:getmail.server:"
+msgid ""
+"Error POP3 Server:\n"
+"%s"
+msgstr ""
+"Error POP3 Server:\n"
+"%s"
+
+msgctxt "error:getmail.server:"
+msgid "IMAP Test Connection was successful"
+msgstr "Test de conexión IMAP realizado correctamente."
+
+msgctxt "error:getmail.server:"
+msgid "POP3 Test Connection was successful"
+msgstr "Test de conexión POP3 realizado correctamente."
+
+msgctxt "error:getmail.server:"
+msgid "The email account must be unique!"
+msgstr "La cuenta de correo debe ser única."
+
+msgctxt "error:getmail.server:"
+msgid "This protocol is not implemented yet."
+msgstr "Este protocolo no está implementado."
+
+msgctxt "field:getmail.server,active:"
+msgid "Active"
+msgstr "Activo"
+
+msgctxt "field:getmail.server,attachment:"
+msgid "Add Attachments"
+msgstr "Añadir adjuntos"
+
+msgctxt "field:getmail.server,create_date:"
+msgid "Create Date"
+msgstr "Fecha de creación"
+
+msgctxt "field:getmail.server,create_uid:"
+msgid "Create User"
+msgstr "Usuario creación"
+
+msgctxt "field:getmail.server,folder:"
+msgid "Folder"
+msgstr "Directorio"
+
+msgctxt "field:getmail.server,id:"
+msgid "ID"
+msgstr "ID"
+
+msgctxt "field:getmail.server,model:"
+msgid "Model"
+msgstr "Modelo"
+
+msgctxt "field:getmail.server,name:"
+msgid "Name"
+msgstr "Nombre"
+
+msgctxt "field:getmail.server,note:"
+msgid "Description"
+msgstr "Descripción"
+
+msgctxt "field:getmail.server,password:"
+msgid "Password"
+msgstr "Contraseña"
+
+msgctxt "field:getmail.server,port:"
+msgid "Port"
+msgstr "Puerto"
+
+msgctxt "field:getmail.server,priority:"
+msgid "Server Priority"
+msgstr "Prioridad servidor"
+
+msgctxt "field:getmail.server,rec_name:"
+msgid "Name"
+msgstr "Nombre"
+
+msgctxt "field:getmail.server,server:"
+msgid "Server"
+msgstr "Servidor"
+
+msgctxt "field:getmail.server,signature:"
+msgid "Add Signature"
+msgstr "Añadir firma"
+
+msgctxt "field:getmail.server,ssl:"
+msgid "SSL"
+msgstr "SSL"
+
+msgctxt "field:getmail.server,state:"
+msgid "State"
+msgstr "Estado"
+
+msgctxt "field:getmail.server,type:"
+msgid "Server Type"
+msgstr "Tipo"
+
+msgctxt "field:getmail.server,user_name:"
+msgid "User Name"
+msgstr "Nombre usuario"
+
+msgctxt "field:getmail.server,write_date:"
+msgid "Write Date"
+msgstr "Fecha modificación"
+
+msgctxt "field:getmail.server,write_uid:"
+msgid "Write User"
+msgstr "Usuario modificación"
+
+msgctxt "help:getmail.server,attachment:"
+msgid "Fetches mail with attachments if true."
+msgstr "Añade adjuntos en las comunicaciones."
+
+msgctxt "help:getmail.server,model:"
+msgid "Select a model have getmail method."
+msgstr "Seleccione un modelo que contenga el método getmail."
+
+msgctxt "help:getmail.server,priority:"
+msgid "Priority between 0 to 10, define the order of Processing"
+msgstr "Prioridad entre 0 y 10."
+
+msgctxt "help:getmail.server,signature:"
+msgid "Fetches mail with signature if true."
+msgstr "Añade la firma en las comunicaciones."
+
+msgctxt "model:getmail.server,name:"
+msgid "Getmail Server"
+msgstr "Servidor Getmail"
+
+msgctxt "model:ir.action,name:act_getmail_server_form"
+msgid "Servers"
+msgstr "Servidores"
+
+msgctxt "model:ir.cron,name:cron_getmail"
+msgid "GetMail"
+msgstr "GetMail"
+
+msgctxt "model:ir.ui.menu,name:menu_getmail"
+msgid "Getmail"
+msgstr "Getmail"
+
+msgctxt "model:ir.ui.menu,name:menu_getmail_server_form"
+msgid "Servers"
+msgstr "Servidores"
+
+msgctxt "model:res.group,name:group_getmail"
+msgid "Getmail"
+msgstr "Administración Getmail"
+
+msgctxt "model:res.user,name:user_getmail"
+msgid "Cron GetMail"
+msgstr "Cron GetMail"
+
+msgctxt "selection:getmail.server,state:"
+msgid "Done"
+msgstr "Realizado"
+
+msgctxt "selection:getmail.server,state:"
+msgid "Draft"
+msgstr "Borrador"
+
+msgctxt "selection:getmail.server,type:"
+msgid "IMAP Server"
+msgstr "Servidor IMAP"
+
+msgctxt "view:getmail.server:"
+msgid "Check"
+msgstr "Test"
+
+msgctxt "view:getmail.server:"
+msgid "Confirm"
+msgstr "Confirmar"
+
+msgctxt "view:getmail.server:"
+msgid "Draft"
+msgstr "Borrador"
+
+msgctxt "view:getmail.server:"
+msgid "General"
+msgstr "General"
+
+msgctxt "view:getmail.server:"
+msgid "Get Emails"
+msgstr "Descargar correos"
+
+msgctxt "view:getmail.server:"
+msgid "Getmail"
+msgstr "Getmail"
+
+msgctxt "view:getmail.server:"
+msgid "Login Information"
+msgstr "Información cuenta"
+
+msgctxt "view:getmail.server:"
+msgid "Note"
+msgstr "Nota"
+
+msgctxt "view:getmail.server:"
+msgid "Process Parameter"
+msgstr "Parámetros"
+
+msgctxt "view:getmail.server:"
+msgid "Server Information"
+msgstr "Información servidor"

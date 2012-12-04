@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<!-- This file is part of getmail module for Tryton.
+The COPYRIGHT file at the top level of this repository contains the full copyright notices and license terms. -->
+<tryton>
+    <data>
+        <!-- Groups -->
+        <record model="res.group" id="group_getmail">
+            <field name="name">Getmail</field>
+        </record>
+        <record model="res.user-res.group" id="user_admin_group_getmail">
+            <field name="user" ref="res.user_admin"/>
+            <field name="group" ref="group_getmail"/>
+        </record>
+
+        <!-- getmail.user -->
+        <record model="res.user" id="user_getmail">
+            <field name="login">user_cron_internal_getmail</field>
+            <field name="name">Cron GetMail</field>
+            <field name="signature"></field>
+            <field name="active" eval="False"/>
+        </record>
+        <record model="res.user-res.group" id="user_getmail_admin_group">
+            <field name="user" ref="user_getmail"/>
+            <field name="group" ref="group_getmail"/>
+        </record>
+
+        <!-- getmail.cron -->
+        <record model="ir.cron" id="cron_getmail">
+            <field name="name">GetMail</field>
+            <field name="request_user" ref="res.user_admin"/>
+            <field name="user" ref="user_getmail"/>
+            <field name="active" eval="True"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="number_calls">-1</field>
+            <field name="repeat_missed" eval="False"/>
+            <field name="model">getmail.server</field>
+            <field name="function">getmail_servers</field>
+        </record>
+
+        <!-- Menu Top -->
+        <menuitem parent="ir.menu_administration" name="Getmail" id="menu_getmail"/>
+        <record model="ir.ui.menu-res.group" id="menu_internetdomain_group_internetdomain">
+            <field name="menu" ref="menu_getmail"/>
+            <field name="group" ref="group_getmail"/>
+        </record>
+
+        <!-- getmail.server -->
+        <record model="ir.ui.view" id="getmail_server_view_form">
+            <field name="model">getmail.server</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <![CDATA[
+                <form string="Getmail" col="6">
+                    <label name="name"/>
+                    <field name="name"/>
+                    <label name="type"/>
+                    <field name="type"/>
+                    <label name="active"/>
+                    <field name="active"/>
+                    <label name="attachment"/>
+                    <field name="attachment"/>
+                    <notebook colspan="6">
+                        <page string="General" id="general" col="6">
+                            <separator name="ssl" string="Server Information" colspan="6"/>
+                            <label name="ssl"/>
+                            <field name="ssl"/>
+                            <label name="server"/>
+                            <field name="server"/>
+                            <label name="port"/>
+                            <field name="port"/>
+                            <label name="folder"/>
+                            <field name="folder"/>
+                            <newline/>
+                            <separator name="user" string="Login Information" colspan="6"/>
+                            <label name="user_name"/>
+                            <field name="user_name"/>
+                            <label name="password"/>
+                            <field name="password" widget="sha"/>
+                            <newline/>
+                            <separator name="object_id" string="Process Parameter" colspan="6"/>
+                            <label name="model"/>
+                            <field name="model"/>
+                            <label name="priority"/>
+                            <field name="priority"/>
+                        </page>
+                        <page string="Note" id="general" col="4">
+                            <field name="note" colspan="6"/>
+                        </page>
+                    </notebook>
+                    <label name="state"/>
+                    <field name="state"/>
+                    <group col="4" colspan="3" id="buttons">
+                        <button name="done" string="Confirm" icon="tryton-go-next"/>
+                        <button name="draft" string="Draft" icon="tryton-clear"/>
+                        <button name="get_server_emails" string="Get Emails" icon="tryton-ok"/>
+                        <button name="get_server_test" string="Check" icon="tryton-ok"/>
+                    </group>
+                </form>
+                ]]>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="getmail_server_view_tree">
+            <field name="model">getmail.server</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <![CDATA[
+                <tree string="Getmail">
+                    <field name="name"/>
+                    <field name="server"/>
+                    <field name="ssl"/>
+                    <field name="port"/>
+                    <field name="folder"/>
+                    <field name="user_name"/>
+                    <field name="model"/>
+                    <field name="priority"/>
+                    <field name="state"/>
+                </tree>
+                ]]>
+            </field>
+        </record>
+
+        <!-- Actions / Menu -->
+        <record model="ir.action.act_window" id="act_getmail_server_form">
+            <field name="name">Servers</field>
+            <field name="res_model">getmail.server</field>
+        </record>
+        <record model="ir.action.act_window.view" id="act_getmail_server_form_view1">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="getmail_server_view_tree"/>
+            <field name="act_window" ref="act_getmail_server_form"/>
+        </record>
+        <record model="ir.action.act_window.view" id="act_getmail_server_form_view2">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="getmail_server_view_form"/>
+            <field name="act_window" ref="act_getmail_server_form"/>
+        </record>
+        <menuitem parent="menu_getmail" action="act_getmail_server_form" id="menu_getmail_server_form"/>
+
+        <!-- Access -->
+        <record model="ir.model.access" id="access_getmail_server_admin">
+            <field name="model" search="[('model', '=', 'getmail.server')]"/>
+            <field name="group" ref="group_getmail"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+        <record model="ir.model.access" id="access_getmail_server">
+            <field name="model" search="[('model', '=', 'getmail.server')]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+    </data>
+</tryton>
