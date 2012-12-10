@@ -232,21 +232,8 @@ class GetmailServer(ModelSQL, ModelView):
             ], limit=1)
         if cmechanism:
             party = cmechanism[0].party
-        if party:
-            address = Pool().get('party.address').search([
-                ('party', '=', party),
-                ('email', 'in', email),
-                ], limit=1)
-        if not address:
-            address = Pool().get('party.address').search([
-                ('email', 'in', email),
-                ], limit=1)
-
-        if address:
-            address = address[0]
-
-        if address and not party:
-            party = address.party
+            if cmechanism[0].address:
+                address = cmechanism[0].address
         return party, address
 
     @staticmethod
