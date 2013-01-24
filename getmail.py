@@ -40,6 +40,10 @@ class GetmailServer(ModelSQL, ModelView):
     folder = fields.Char('Folder', states={
             'readonly': Not(Equal(Eval('state'), 'draft')),
             })
+    limit = fields.Integer('Limit', states={
+            'readonly': Not(Equal(Eval('state'), 'draft')),
+            },
+            help='Total emails by connection. Default is 10')
     type = fields.Selection([
 #            ('pop', 'POP Server'),
             ('imap', 'IMAP Server')
@@ -176,6 +180,7 @@ class GetmailServer(ModelSQL, ModelView):
         '''Get emails from server and call getmail method'''
         for server in servers:
             messages = []
+            limit = server.limit or 10
             if server.type == 'imap':
                 folder = server.folder or 'INBOX'
                 try:
@@ -185,7 +190,7 @@ class GetmailServer(ModelSQL, ModelView):
                         server.password,
                         folder)
                     #messages = imapper.listup(20)
-                    messages = imapper.unseen()
+                    messages = imapper.unseen(limit)
                     imapper.quit()
                 except Exception, e:
                     self.raise_user_error('imap_error', e)

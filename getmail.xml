@@ -71,6 +71,8 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
                             <field name="port"/>
                             <label name="folder"/>
                             <field name="folder"/>
+                            <label name="limit"/>
+                            <field name="limit"/>
                             <newline/>
                             <separator name="user" string="Login Information" colspan="6"/>
                             <label name="user_name"/>
