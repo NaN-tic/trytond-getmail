@@ -13,7 +13,7 @@ import base64
 try:
     import easyimap
 except ImportError:
-    message = 'Unable to import easymap'
+    message = 'Unable to import easyimap'
     logging.getLogger('GetMail').error(message)
     raise Exception(message)
 
