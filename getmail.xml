@@ -74,13 +74,13 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
                             <label name="limit"/>
                             <field name="limit"/>
                             <newline/>
-                            <separator name="user" string="Login Information" colspan="6"/>
-                            <label name="user_name"/>
-                            <field name="user_name"/>
+                            <separator name="username" string="Login Information" colspan="6"/>
+                            <label name="username"/>
+                            <field name="username"/>
                             <label name="password"/>
                             <field name="password" widget="sha"/>
                             <newline/>
-                            <separator name="object_id" string="Process Parameter" colspan="6"/>
+                            <separator name="model" string="Process Parameter" colspan="6"/>
                             <label name="model"/>
                             <field name="model"/>
                             <label name="priority"/>
@@ -114,7 +114,7 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
                     <field name="ssl"/>
                     <field name="port"/>
                     <field name="folder"/>
-                    <field name="user_name"/>
+                    <field name="username"/>
                     <field name="model"/>
                     <field name="priority"/>
                     <field name="state"/>

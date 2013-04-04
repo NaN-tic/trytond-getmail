@@ -55,7 +55,7 @@ class GetmailServer(ModelSQL, ModelView):
             })
     attachment = fields.Boolean('Add Attachments',
             help='Fetches mail with attachments if true.')
-    user_name = fields.Char('User Name', required=True, states={
+    username = fields.Char('User Name', required=True, states={
             'readonly': Not(Equal(Eval('state'), 'draft')),
             })
     password = fields.Char('Password', required=True, states={
@@ -78,7 +78,7 @@ class GetmailServer(ModelSQL, ModelView):
             ('check_model', 'check_model'),
             ]
         cls._sql_constraints += [
-            ('account_uniq', 'UNIQUE(user_name)',
+            ('account_uniq', 'UNIQUE(username)',
                 'The email account must be unique!'),
         ]
         cls._error_messages.update({
@@ -164,7 +164,7 @@ class GetmailServer(ModelSQL, ModelView):
                 try:
                     imapper = easyimap.connect(
                         server.server,
-                        server.user_name,
+                        server.username,
                         server.password,
                         folder)
                     imapper.quit()
@@ -186,7 +186,7 @@ class GetmailServer(ModelSQL, ModelView):
                 try:
                     imapper = easyimap.connect(
                         server.server,
-                        server.user_name,
+                        server.username,
                         server.password,
                         folder)
                     #messages = imapper.listup(20)
