@@ -8,7 +8,6 @@ from datetime import datetime
 import logging
 import re
 import email
-import base64
 
 try:
     import easyimap
@@ -74,35 +73,33 @@ class GetmailServer(ModelSQL, ModelView):
     @classmethod
     def __setup__(cls):
         super(GetmailServer, cls).__setup__()
-        cls._constraints += [
-            ('check_model', 'check_model'),
-            ]
         cls._sql_constraints += [
             ('account_uniq', 'UNIQUE(username)',
                 'The email account must be unique!'),
         ]
         cls._error_messages.update({
-            'pop_successful': 'POP3 Test Connection was successful',
-            'pop_error': 'Error POP3 Server:\n%s',
-            'imap_successful': 'IMAP Test Connection was successful',
-            'imap_error': 'Error IMAP Server:\n%s',
-            'unimplemented_protocol': 'This protocol is not implemented yet.',
-            'check_model': 'Don\'t available "getmail" method in model.',
-            'check_folder': 'Don\'t available folder in Email Server.',
-        })
+                'pop_successful': 'POP3 Test Connection was successful',
+                'pop_error': 'Error POP3 Server:\n%s',
+                'imap_successful': 'IMAP Test Connection was successful',
+                'imap_error': 'Error IMAP Server:\n%s',
+                'unimplemented_protocol': 'This protocol is not implemented yet.',
+                'check_model': ('Method "getmail" not available in model '
+                    '"%(model)s" of server "%(server)s".'),
+                'check_folder': 'Don\'t available folder in Email Server.',
+                })
         cls._buttons.update({
-            'done': {
-                'invisible': Eval('state') == 'done',
-                },
-            'draft': {
-                'invisible': Eval('state') == 'draft',
-                },
-            'get_server_test': {
-                },
-            'get_server_emails': {
-                'invisible': Eval('state') == 'draft',
-                },
-        })
+                'done': {
+                    'invisible': Eval('state') == 'done',
+                    },
+                'draft': {
+                    'invisible': Eval('state') == 'draft',
+                    },
+                'get_server_test': {
+                    },
+                'get_server_emails': {
+                    'invisible': Eval('state') == 'draft',
+                    },
+                })
 
     @staticmethod
     def default_state():
@@ -207,14 +204,19 @@ class GetmailServer(ModelSQL, ModelView):
                 attachments=server.attachment)
 
     @classmethod
-    def check_model(cls, servers):
-        '''Check model must contain getmail method.'''
+    def validate(cls, servers):
         for server in servers:
-            model_name = server.model.model
-            model = Pool().get(model_name)
-            if hasattr(model, 'getmail'):
-                return True
-            return False
+            server.check_model()
+
+    def check_model(self):
+        '''Check model must contain getmail method.'''
+        model_name = self.model.model
+        model = Pool().get(model_name)
+        if not hasattr(model, 'getmail'):
+            self.raise_user_error('check_model', {
+                    'model': self.model.rec_name,
+                    'server': self.rec_name,
+                    })
 
     @classmethod
     def getmail_servers(cls):
