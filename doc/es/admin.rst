@@ -1,4 +1,4 @@
-#:after:trytond_doc/admin:title:administracion_y_configuracion#
+#:inside:trytond_doc/admin:toctree:administracion_y_configuracion#
 
 .. toctree::
    :maxdepth: 2
