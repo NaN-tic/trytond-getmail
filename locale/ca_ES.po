@@ -172,7 +172,7 @@ msgstr "Cron GetMail"
 
 msgctxt "selection:getmail.server,state:"
 msgid "Done"
-msgstr "Realitzat"
+msgstr "Confirmat"
 
 msgctxt "selection:getmail.server,state:"
 msgid "Draft"
