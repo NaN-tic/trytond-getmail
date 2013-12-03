@@ -1,6 +1,6 @@
-===============================
-Recepción de correo electrónico
-===============================
+========================================
+Getmail. Recepción de correo electrónico
+========================================
 
 Get Mail es un módulo que le permite la recepción de correos electrónicos en su
 ERP. No es un módulo de gestión de correo electrónico como Evolution o
