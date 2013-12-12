@@ -43,6 +43,10 @@ class GetmailServer(ModelSQL, ModelView):
             'readonly': Not(Equal(Eval('state'), 'draft')),
             },
             help='Total emails by connection. Default is 10')
+    timeout = fields.Integer('Time Out', states={
+            'readonly': Not(Equal(Eval('state'), 'draft')),
+            },
+            help='Default is 15')
     type = fields.Selection([
 #            ('pop', 'POP Server'),
             ('imap', 'IMAP Server')
@@ -158,12 +162,17 @@ class GetmailServer(ModelSQL, ModelView):
         for server in servers:
             if server.type == 'imap':
                 folder = server.folder or 'INBOX'
+                timeout = server.timeout or 15
                 try:
                     imapper = easyimap.connect(
                         server.server,
                         server.username,
                         server.password,
-                        folder)
+                        folder,
+                        timeout,
+                        server.ssl,
+                        server.port,
+                        )
                     imapper.quit()
                 except Exception, e:
                     cls.raise_user_error('imap_error', e)
@@ -178,6 +187,7 @@ class GetmailServer(ModelSQL, ModelView):
         for server in servers:
             messages = []
             limit = server.limit or 10
+            timeout = server.timeout or 15
             if server.type == 'imap':
                 folder = server.folder or 'INBOX'
                 try:
@@ -185,7 +195,11 @@ class GetmailServer(ModelSQL, ModelView):
                         server.server,
                         server.username,
                         server.password,
-                        folder)
+                        folder,
+                        timeout,
+                        server.ssl,
+                        server.port,
+                        )
                     #messages = imapper.listup(20)
                     messages = imapper.unseen(limit)
                     imapper.quit()

@@ -73,6 +73,8 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
                             <field name="folder"/>
                             <label name="limit"/>
                             <field name="limit"/>
+                            <label name="timeout"/>
+                            <field name="timeout"/>
                             <newline/>
                             <separator name="username" string="Login Information" colspan="6"/>
                             <label name="username"/>
