@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!-- This file is part of getmail module for Tryton.
+The COPYRIGHT file at the top level of this repository contains the full copyright notices and license terms. -->
+<tree string="Getmail">
+    <field name="name"/>
+    <field name="server"/>
+    <field name="ssl"/>
+    <field name="port"/>
+    <field name="folder"/>
+    <field name="username"/>
+    <field name="model"/>
+    <field name="priority"/>
+    <field name="state"/>
+</tree>

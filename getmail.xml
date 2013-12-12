@@ -49,80 +49,13 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
         <record model="ir.ui.view" id="getmail_server_view_form">
             <field name="model">getmail.server</field>
             <field name="type">form</field>
-            <field name="arch" type="xml">
-                <![CDATA[
-                <form string="Getmail" col="6">
-                    <label name="name"/>
-                    <field name="name"/>
-                    <label name="type"/>
-                    <field name="type"/>
-                    <label name="active"/>
-                    <field name="active"/>
-                    <label name="attachment"/>
-                    <field name="attachment"/>
-                    <notebook colspan="6">
-                        <page string="General" id="general" col="6">
-                            <separator name="ssl" string="Server Information" colspan="6"/>
-                            <label name="ssl"/>
-                            <field name="ssl"/>
-                            <label name="server"/>
-                            <field name="server"/>
-                            <label name="port"/>
-                            <field name="port"/>
-                            <label name="folder"/>
-                            <field name="folder"/>
-                            <label name="limit"/>
-                            <field name="limit"/>
-                            <label name="timeout"/>
-                            <field name="timeout"/>
-                            <newline/>
-                            <separator name="username" string="Login Information" colspan="6"/>
-                            <label name="username"/>
-                            <field name="username"/>
-                            <label name="password"/>
-                            <field name="password" widget="sha"/>
-                            <newline/>
-                            <separator name="model" string="Process Parameter" colspan="6"/>
-                            <label name="model"/>
-                            <field name="model"/>
-                            <label name="priority"/>
-                            <field name="priority"/>
-                        </page>
-                        <page string="Note" id="general" col="4">
-                            <field name="note" colspan="6"/>
-                        </page>
-                    </notebook>
-                    <label name="state"/>
-                    <field name="state"/>
-                    <group col="4" colspan="3" id="buttons">
-                        <button name="done" string="Confirm" icon="tryton-go-next"/>
-                        <button name="draft" string="Draft" icon="tryton-clear"/>
-                        <button name="get_server_emails" string="Get Emails" icon="tryton-ok"/>
-                        <button name="get_server_test" string="Check" icon="tryton-ok"/>
-                    </group>
-                </form>
-                ]]>
-            </field>
+            <field name="name">getmail_server_form</field>
         </record>
 
         <record model="ir.ui.view" id="getmail_server_view_tree">
             <field name="model">getmail.server</field>
             <field name="type">tree</field>
-            <field name="arch" type="xml">
-                <![CDATA[
-                <tree string="Getmail">
-                    <field name="name"/>
-                    <field name="server"/>
-                    <field name="ssl"/>
-                    <field name="port"/>
-                    <field name="folder"/>
-                    <field name="username"/>
-                    <field name="model"/>
-                    <field name="priority"/>
-                    <field name="state"/>
-                </tree>
-                ]]>
-            </field>
+            <field name="name">getmail_server_tree</field>
         </record>
 
         <!-- Actions / Menu -->
@@ -158,6 +91,5 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
             <field name="perm_create" eval="False"/>
             <field name="perm_delete" eval="False"/>
         </record>
-
     </data>
 </tryton>
