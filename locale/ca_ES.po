@@ -3,10 +3,6 @@ msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
 msgctxt "error:getmail.server:"
-msgid "Don't available \"getmail\" method in model."
-msgstr "No es troba el mètode \"getmail\" en el model."
-
-msgctxt "error:getmail.server:"
 msgid "Don't available folder in Email Server."
 msgstr "No es troba el directori en el servidor de correu."
 
@@ -29,6 +25,12 @@ msgstr ""
 msgctxt "error:getmail.server:"
 msgid "IMAP Test Connection was successful"
 msgstr "La connexió servidor IMAP s'ha realitzat correctament."
+
+msgctxt "error:getmail.server:"
+msgid "Method \"getmail\" not available in model \"%(model)s\" of server \"%(server)s\"."
+msgstr ""
+"El mètode \"getmail\" no es troba disponible en el model \"%(model)s\" del "
+"servidor \"%(server)s\"."
 
 msgctxt "error:getmail.server:"
 msgid "POP3 Test Connection was successful"
@@ -66,6 +68,10 @@ msgctxt "field:getmail.server,id:"
 msgid "ID"
 msgstr "ID"
 
+msgctxt "field:getmail.server,limit:"
+msgid "Limit"
+msgstr "Límit"
+
 msgctxt "field:getmail.server,model:"
 msgid "Model"
 msgstr "Model"
@@ -98,10 +104,6 @@ msgctxt "field:getmail.server,server:"
 msgid "Server"
 msgstr "Servidor"
 
-msgctxt "field:getmail.server,signature:"
-msgid "Add Signature"
-msgstr "Afegir signatura"
-
 msgctxt "field:getmail.server,ssl:"
 msgid "SSL"
 msgstr "SSL"
@@ -110,13 +112,17 @@ msgctxt "field:getmail.server,state:"
 msgid "State"
 msgstr "Estat"
 
+msgctxt "field:getmail.server,timeout:"
+msgid "Time Out"
+msgstr "Time Out"
+
 msgctxt "field:getmail.server,type:"
 msgid "Server Type"
 msgstr "Tipus"
 
-msgctxt "field:getmail.server,user_name:"
+msgctxt "field:getmail.server,username:"
 msgid "User Name"
-msgstr "Usuari"
+msgstr "Nom usuari"
 
 msgctxt "field:getmail.server,write_date:"
 msgid "Write Date"
@@ -130,6 +136,10 @@ msgctxt "help:getmail.server,attachment:"
 msgid "Fetches mail with attachments if true."
 msgstr "Afegir els adjunts a les comunicacions."
 
+msgctxt "help:getmail.server,limit:"
+msgid "Total emails by connection. Default is 10"
+msgstr "Correus totals en la connexió. Per defecte 10"
+
 msgctxt "help:getmail.server,model:"
 msgid "Select a model have getmail method."
 msgstr "Selecciona un model amb el mètode getmail."
@@ -138,9 +148,9 @@ msgctxt "help:getmail.server,priority:"
 msgid "Priority between 0 to 10, define the order of Processing"
 msgstr "La prioridad va entre 0 a 10."
 
-msgctxt "help:getmail.server,signature:"
-msgid "Fetches mail with signature if true."
-msgstr "Afegeix la signatura a les comunicacions."
+msgctxt "help:getmail.server,timeout:"
+msgid "Default is 15"
+msgstr "Per defecte 15"
 
 msgctxt "model:getmail.server,name:"
 msgid "Getmail Server"
@@ -183,10 +193,6 @@ msgid "IMAP Server"
 msgstr "Servidor IMAP"
 
 msgctxt "view:getmail.server:"
-msgid "Check"
-msgstr "Test"
-
-msgctxt "view:getmail.server:"
 msgid "Confirm"
 msgstr "Confirma"
 
@@ -221,3 +227,7 @@ msgstr "Paràmetres"
 msgctxt "view:getmail.server:"
 msgid "Server Information"
 msgstr "Informació servidor"
+
+msgctxt "view:getmail.server:"
+msgid "Test"
+msgstr "Test"
