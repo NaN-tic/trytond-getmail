@@ -5,9 +5,9 @@ from trytond.model import ModelView, ModelSQL, fields
 from trytond.pool import Pool
 from trytond.pyson import Eval, Equal, Not
 from datetime import datetime
-import logging
-import re
+from email.utils import parseaddr
 import email
+import logging
 
 try:
     import easyimap
@@ -258,8 +258,8 @@ class GetmailServer(ModelSQL, ModelView):
         return party, address
 
     @staticmethod
-    def get_email(text):
-        return re.findall(r'([^ ,<@]+@[^> ,]+)', text)
+    def get_email(email):
+        return parseaddr(email)[1]
 
     @staticmethod
     def get_date(date):
