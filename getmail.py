@@ -247,14 +247,14 @@ class GetmailServer(ModelSQL, ModelView):
     def get_party_from_email(email):
         party = None
         address = None
-        cmechanism = Pool().get('party.contact_mechanism').search([
+        cmechanisms = Pool().get('party.contact_mechanism').search([
             ('type', '=', 'email'),
-            ('value', 'in', email),
+            ('value', '=', email),
             ], limit=1)
-        if cmechanism:
-            party = cmechanism[0].party
-            if cmechanism[0].address:
-                address = cmechanism[0].address
+        if cmechanisms:
+            party = cmechanisms[0].party
+            if cmechanisms[0].address:
+                address = cmechanisms[0].address
         return party, address
 
     @staticmethod
