@@ -263,5 +263,5 @@ class GetmailServer(ModelSQL, ModelView):
 
     @staticmethod
     def get_date(date):
-        date_tz = email.utils.parsedate_tz(date)
-        return datetime(*date_tz[:6])
+        timestamp = email.utils.mktime_tz(email.utils.parsedate_tz(date))
+        return datetime.fromtimestamp(timestamp)
