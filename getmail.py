@@ -6,6 +6,7 @@ from trytond.pool import Pool
 from trytond.pyson import Eval, Equal, Not
 from datetime import datetime
 from email.utils import parseaddr
+from email.header import decode_header
 import email
 import logging
 
@@ -263,5 +264,14 @@ class GetmailServer(ModelSQL, ModelView):
 
     @staticmethod
     def get_date(date):
+        '''Convert date from timezone'''
         timestamp = email.utils.mktime_tz(email.utils.parsedate_tz(date))
         return datetime.fromtimestamp(timestamp)
+
+    @staticmethod
+    def get_filename(fname):
+        '''Decode filename acording email header'''
+        name, encoding = decode_header(fname)[0]
+        if encoding:
+            return name.decode(encoding)
+        return name
