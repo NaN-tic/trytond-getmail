@@ -7,6 +7,9 @@ from setuptools import setup
 import re
 import ConfigParser
 
+
+MODULE2PREFIX = {'party_communication': 'trytonspain'}
+
 config = ConfigParser.ConfigParser()
 config.readfp(open('tryton.cfg'))
 info = dict(config.items('tryton'))
@@ -20,9 +23,10 @@ minor_version = int(minor_version)
 requires = []
 for dep in info.get('depends', []):
     if not re.match(r'(ir|res|webdav)(\W|$)', dep):
-        requires.append('trytond_%s >= %s.%s, < %s.%s' %
-                (dep, major_version, minor_version, major_version,
-                    minor_version + 1))
+        prefix = MODULE2PREFIX.get(dep, 'trytond')
+        requires.append('%s_%s >= %s.%s, < %s.%s' %
+                (prefix, dep, major_version, minor_version,
+                    major_version, minor_version + 1))
 requires.append('trytond >= %s.%s, < %s.%s' %
         (major_version, minor_version, major_version, minor_version + 1))
 
