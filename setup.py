@@ -59,7 +59,7 @@ setup(name='%s_%s' % (PREFIX, MODULE),
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Plugins',
-        'Framesale :: Tryton',
+        'Framework :: Tryton',
         'Intended Audience :: Developers',
         'Intended Audience :: Financial and Insurance Industry',
         'Intended Audience :: Legal Industry',
