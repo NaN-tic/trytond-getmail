@@ -1,14 +1,20 @@
 #!/usr/bin/env python
-#This file is part of getmail module for Tryton.
-#The COPYRIGHT file at the top level of this repository contains 
-#the full copyright notices and license terms.
+# This file is part of the getmail module for Tryton.
+# The COPYRIGHT file at the top level of this repository contains the full
+# copyright notices and license terms.
 
 from setuptools import setup
 import re
+import os
 import ConfigParser
 
-
+MODULE = 'getmail'
+PREFIX = 'trytonzz'
 MODULE2PREFIX = {'party_communication': 'trytonspain'}
+
+
+def read(fname):
+    return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 config = ConfigParser.ConfigParser()
 config.readfp(open('tryton.cfg'))
@@ -26,30 +32,34 @@ for dep in info.get('depends', []):
         prefix = MODULE2PREFIX.get(dep, 'trytond')
         requires.append('%s_%s >= %s.%s, < %s.%s' %
                 (prefix, dep, major_version, minor_version,
-                    major_version, minor_version + 1))
+                major_version, minor_version + 1))
 requires.append('trytond >= %s.%s, < %s.%s' %
         (major_version, minor_version, major_version, minor_version + 1))
+requires.append('easyimap >= 0.5.0')
 
-setup(name='trytond_getmail',
+tests_require = ['proteus >= %s.%s, < %s.%s' %
+    (major_version, minor_version, major_version, minor_version + 1)]
+
+setup(name='%s_%s' % (PREFIX, MODULE),
     version=info.get('version', '0.0.1'),
-    description='Getmail Tryton module',
+    description='Tryton module get email',
     author='Zikzakmedia SL',
     author_email='zikzak@zikzakmedia.com',
     url='http://www.zikzakmedia.com',
-    download_url="https://bitbucket.org/zikzakmedia/trytond-getmail",
-    package_dir={'trytond.modules.getmail': '.'},
+    download_url="https://bitbucket.org/zikzakmedia/trytond-%s" % MODULE,
+    package_dir={'trytond.modules.%s' % MODULE: '.'},
     packages=[
-        'trytond.modules.getmail',
-        'trytond.modules.getmail.tests',
-    ],
+        'trytond.modules.%s' % MODULE,
+        'trytond.modules.%s.tests' % MODULE,
+        ],
     package_data={
-        'trytond.modules.getmail': info.get('xml', []) \
-            + ['tryton.cfg', 'view/*.xml', 'locale/*.po'],
-    },
+        'trytond.modules.%s' % MODULE: (info.get('xml', [])
+            + ['tryton.cfg', 'view/*.xml', 'locale/*.po']),
+        },
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Plugins',
-        'Framework :: Tryton',
+        'Framesale :: Tryton',
         'Intended Audience :: Developers',
         'Intended Audience :: Financial and Insurance Industry',
         'Intended Audience :: Legal Industry',
@@ -61,14 +71,14 @@ setup(name='trytond_getmail',
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Topic :: Office/Business',
-    ],
+        ],
     license='GPL-3',
     install_requires=requires,
     zip_safe=False,
     entry_points="""
     [trytond.modules]
-    getmail = trytond.modules.getmail
-    """,
+    %s = trytond.modules.%s
+    """ % (MODULE, MODULE),
     test_suite='tests',
     test_loader='trytond.test_loader:Loader',
-)
+    )
