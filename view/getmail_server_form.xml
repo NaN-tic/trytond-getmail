@@ -30,7 +30,7 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
             <label name="username"/>
             <field name="username"/>
             <label name="password"/>
-            <field name="password" widget="sha"/>
+            <field name="password" widget="password"/>
             <newline/>
             <separator name="model" string="Process Parameter" colspan="6"/>
             <label name="model"/>
