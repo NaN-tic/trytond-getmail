@@ -36,7 +36,7 @@ class GetmailServer(ModelSQL, ModelView):
             })
     port = fields.Integer('Port', required=True, states={
             'readonly': Not(Equal(Eval('state'), 'draft')),
-            }, on_change_with=['ssl', 'type'])
+            })
     folder = fields.Char('Folder', states={
             'readonly': Not(Equal(Eval('state'), 'draft')),
             })
@@ -130,6 +130,7 @@ class GetmailServer(ModelSQL, ModelView):
     def default_port():
         return 993
 
+    @fields.depends('ssl', 'type')
     def on_change_with_port(self):
         res = 0
         if self.type == 'imap':
