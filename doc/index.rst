@@ -1,5 +1,5 @@
-Getmail Module
-################
+Getmail
+#######
 
 The getmail module allows to:
     * Fetch email from Pop/IMAP server
