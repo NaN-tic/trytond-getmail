@@ -123,6 +123,10 @@ class GetmailServer(ModelSQL, ModelView):
         return 'imap'
 
     @staticmethod
+    def default_ssl():
+        return True
+
+    @staticmethod
     def default_attach():
         return False
 
@@ -241,6 +245,7 @@ class GetmailServer(ModelSQL, ModelView):
         - Active
         - State: Done
         """
+        print prova
         servers = cls.search([('state', '=', 'done'), ('active', '=', True)])
         cls.get_server_emails(servers)
         return True
