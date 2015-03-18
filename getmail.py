@@ -25,55 +25,55 @@ class GetmailServer(ModelSQL, ModelView):
     __name__ = 'getmail.server'
     name = fields.Char('Name', required=True)
     active = fields.Boolean('Active', states={
-            'readonly': Not(Equal(Eval('state'), 'draft')),
-            })
+        'readonly': Not(Equal(Eval('state'), 'draft')),
+        }, depends=['state'])
     state = fields.Selection([
-            ('draft', 'Draft'),
-            ('done', 'Done'),
-            ], 'State', readonly=True)
+        ('draft', 'Draft'),
+        ('done', 'Done'),
+        ], 'State', readonly=True)
     server = fields.Char('Server', required=True, states={
-            'readonly': Not(Equal(Eval('state'), 'draft')),
-            })
+        'readonly': Not(Equal(Eval('state'), 'draft')),
+        }, depends=['state'])
     port = fields.Integer('Port', required=True, states={
-            'readonly': Not(Equal(Eval('state'), 'draft')),
-            })
+        'readonly': Not(Equal(Eval('state'), 'draft')),
+        }, depends=['state'])
     folder = fields.Char('Folder', states={
-            'readonly': Not(Equal(Eval('state'), 'draft')),
-            })
+        'readonly': Not(Equal(Eval('state'), 'draft')),
+        }, depends=['state'])
     limit = fields.Integer('Limit', states={
-            'readonly': Not(Equal(Eval('state'), 'draft')),
-            },
-            help='Total emails by connection. Default is 10')
+        'readonly': Not(Equal(Eval('state'), 'draft')),
+        }, depends=['state'],
+        help='Total emails by connection. Default is 10')
     timeout = fields.Integer('Time Out', states={
-            'readonly': Not(Equal(Eval('state'), 'draft')),
-            },
-            help='Default is 15')
+        'readonly': Not(Equal(Eval('state'), 'draft')),
+        }, depends=['state'],
+        help='Default is 15')
     type = fields.Selection([
-#            ('pop', 'POP Server'),
-            ('imap', 'IMAP Server')
-            ], 'Server Type', required=True, states={
-            'readonly': Not(Equal(Eval('state'), 'draft')),
-            })
+#       ('pop', 'POP Server'),
+        ('imap', 'IMAP Server')
+        ], 'Server Type', required=True, states={
+        'readonly': Not(Equal(Eval('state'), 'draft')),
+        }, depends=['state'])
     ssl = fields.Boolean('SSL', states={
-            'readonly': Not(Equal(Eval('state'), 'draft')),
-            })
+        'readonly': Not(Equal(Eval('state'), 'draft')),
+        }, depends=['state'])
     attachment = fields.Boolean('Add Attachments',
-            help='Fetches mail with attachments if true.')
+        help='Fetches mail with attachments if true.')
     username = fields.Char('User Name', required=True, states={
-            'readonly': Not(Equal(Eval('state'), 'draft')),
-            })
+        'readonly': Not(Equal(Eval('state'), 'draft')),
+        }, depends=['state'])
     password = fields.Char('Password', required=True, states={
-            'readonly': Not(Equal(Eval('state'), 'draft')),
-            })
+        'readonly': Not(Equal(Eval('state'), 'draft')),
+        }, depends=['state'])
     note = fields.Text('Description')
     model = fields.Many2One('ir.model', 'Model', required=True, states={
-            'readonly': Not(Equal(Eval('state'), 'draft')),
-            },
-            help='Select a model have getmail method.')
+        'readonly': Not(Equal(Eval('state'), 'draft')),
+        }, depends=['state'],
+        help='Select a model have getmail method.')
     priority = fields.Integer('Server Priority', states={
-            'readonly': Not(Equal(Eval('state'), 'draft')),
-            },
-            help='Priority between 0 to 10, define the order of Processing')
+        'readonly': Not(Equal(Eval('state'), 'draft')),
+        }, depends=['state'],
+        help='Priority between 0 to 10, define the order of Processing')
 
     @classmethod
     def __setup__(cls):
