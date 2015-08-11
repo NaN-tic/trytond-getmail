@@ -10,11 +10,13 @@ from email.header import decode_header
 import email
 import logging
 
+logger = logging.getLogger(__name__)
+
 try:
     import easyimap
 except ImportError:
     message = 'Unable to import easyimap'
-    logging.getLogger('GetMail').error(message)
+    logger.error(message)
     raise Exception(message)
 
 __all__ = ['GetmailServer']
@@ -207,7 +209,7 @@ class GetmailServer(ModelSQL, ModelView):
                     self.raise_user_error('imap_error', e)
             else:
                 self.raise_user_error('unimplemented_protocol')
-            logging.getLogger('Getmail').info(
+            logger.info(
                 'Process %s email(s) from %s' % (
                     len(messages),
                     server.name,
