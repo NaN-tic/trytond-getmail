@@ -54,7 +54,7 @@ msgstr "Añadir adjuntos"
 
 msgctxt "field:getmail.server,create_date:"
 msgid "Create Date"
-msgstr "Fecha de creación"
+msgstr "Fecha creación"
 
 msgctxt "field:getmail.server,create_uid:"
 msgid "Create User"
