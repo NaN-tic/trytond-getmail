@@ -130,7 +130,7 @@ class GetmailServer(ModelSQL, ModelView):
         return True
 
     @staticmethod
-    def default_attach():
+    def default_attachment():
         return False
 
     @staticmethod
