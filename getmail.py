@@ -217,8 +217,7 @@ class GetmailServer(ModelSQL, ModelView):
                 ))
             model_name = server.model.model
             model = Pool().get(model_name)
-            model.getmail(messages,
-                attachments=server.attachment)
+            model.getmail(server, messages)
 
     @classmethod
     def validate(cls, servers):
