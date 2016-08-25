@@ -266,8 +266,10 @@ class GetmailServer(ModelSQL, ModelView):
     @staticmethod
     def get_date(date):
         '''Convert date from timezone'''
-        timestamp = email.utils.mktime_tz(email.utils.parsedate_tz(date))
-        return datetime.fromtimestamp(timestamp)
+        if date:
+            timestamp = email.utils.mktime_tz(email.utils.parsedate_tz(date))
+            return datetime.fromtimestamp(timestamp)
+        return datetime.now()
 
     @staticmethod
     def get_filename(fname):
