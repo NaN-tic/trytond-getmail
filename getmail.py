@@ -28,53 +28,53 @@ class GetmailServer(ModelSQL, ModelView):
     name = fields.Char('Name', required=True)
     active = fields.Boolean('Active', states={
             'readonly': Not(Equal(Eval('state'), 'draft')),
-        }, depends=['state'])
+            }, depends=['state'])
     state = fields.Selection([
             ('draft', 'Draft'),
             ('done', 'Done'),
-        ], 'State', readonly=True)
+            ], 'State', readonly=True)
     server = fields.Char('Server', required=True, states={
             'readonly': Not(Equal(Eval('state'), 'draft')),
-        }, depends=['state'])
+            }, depends=['state'])
     port = fields.Integer('Port', required=True, states={
             'readonly': Not(Equal(Eval('state'), 'draft')),
-        }, depends=['state'])
+            }, depends=['state'])
     folder = fields.Char('Folder', states={
             'readonly': Not(Equal(Eval('state'), 'draft')),
-        }, depends=['state'])
+            }, depends=['state'])
     limit = fields.Integer('Limit', states={
             'readonly': Not(Equal(Eval('state'), 'draft')),
-        }, depends=['state'],
+            }, depends=['state'],
         help='Total emails by connection. Default is 10')
     timeout = fields.Integer('Time Out', states={
             'readonly': Not(Equal(Eval('state'), 'draft')),
-        }, depends=['state'],
+            }, depends=['state'],
         help='Default is 15')
     type = fields.Selection([
-            #('pop', 'POP Server'),
+            #  ('pop', 'POP Server'),
             ('imap', 'IMAP Server')
-        ], 'Server Type', required=True, states={
-        'readonly': Not(Equal(Eval('state'), 'draft')),
-        }, depends=['state'])
+            ], 'Server Type', required=True, states={
+            'readonly': Not(Equal(Eval('state'), 'draft')),
+            }, depends=['state'])
     ssl = fields.Boolean('SSL', states={
             'readonly': Not(Equal(Eval('state'), 'draft')),
-        }, depends=['state'])
+            }, depends=['state'])
     attachment = fields.Boolean('Add Attachments',
         help='Fetches mail with attachments if true.')
     username = fields.Char('User Name', required=True, states={
             'readonly': Not(Equal(Eval('state'), 'draft')),
-        }, depends=['state'])
+            }, depends=['state'])
     password = fields.Char('Password', required=True, states={
             'readonly': Not(Equal(Eval('state'), 'draft')),
-        }, depends=['state'])
+            }, depends=['state'])
     note = fields.Text('Description')
     model = fields.Many2One('ir.model', 'Model', required=True, states={
             'readonly': Not(Equal(Eval('state'), 'draft')),
-        }, depends=['state'],
+            }, depends=['state'],
         help='Select a model have getmail method.')
     priority = fields.Integer('Server Priority', states={
             'readonly': Not(Equal(Eval('state'), 'draft')),
-        }, depends=['state'],
+            }, depends=['state'],
         help='Priority between 0 to 10, define the order of Processing')
 
     @classmethod
@@ -90,7 +90,8 @@ class GetmailServer(ModelSQL, ModelView):
                 'pop_error': 'Error POP3 Server:\n%s',
                 'imap_successful': 'IMAP Test Connection was successful',
                 'imap_error': 'Error IMAP Server:\n%s',
-                'unimplemented_protocol': 'This protocol is not implemented yet.',
+                'unimplemented_protocol': (
+                    'This protocol is not implemented yet.'),
                 'check_model': ('Method "getmail" not available in model '
                     '"%(model)s" of server "%(server)s".'),
                 'check_folder': 'Don\'t available folder in Email Server.',
@@ -203,7 +204,7 @@ class GetmailServer(ModelSQL, ModelView):
                         server.ssl,
                         server.port,
                         )
-                    #messages = imapper.listup(20)
+                    #  messages = imapper.listup(20)
                     messages = imapper.unseen(limit)
                     imapper.quit()
                 except Exception, e:
@@ -255,8 +256,6 @@ class GetmailServer(ModelSQL, ModelView):
             ], limit=1)
         if cmechanisms:
             party = cmechanisms[0].party
-            if cmechanisms[0].address:
-                address = cmechanisms[0].address
         return party, address
 
     @staticmethod

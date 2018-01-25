@@ -2,10 +2,10 @@
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
 from trytond.pool import Pool
-from .getmail import *
+from . import getmail
 
 
 def register():
     Pool.register(
-        GetmailServer,
+        getmail.GetmailServer,
         module='getmail', type_='model')
