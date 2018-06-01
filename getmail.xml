@@ -91,5 +91,26 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
             <field name="perm_create" eval="False"/>
             <field name="perm_delete" eval="False"/>
         </record>
+
+        <record model="ir.model.button" id="done_button">
+            <field name="name">done</field>
+            <field name="string">Confirm</field>
+            <field name="model" search="[('model', '=', 'getmail.server')]"/>
+        </record>
+        <record model="ir.model.button" id="get_server_test_button">
+            <field name="name">get_server_test</field>
+            <field name="string">Test</field>
+            <field name="model" search="[('model', '=', 'getmail.server')]"/>
+        </record>
+        <record model="ir.model.button" id="get_server_emails_button">
+            <field name="name">get_server_emails</field>
+            <field name="string">Get Emails</field>
+            <field name="model" search="[('model', '=', 'getmail.server')]"/>
+        </record>
+        <record model="ir.model.button" id="draft_button">
+            <field name="name">draft</field>
+            <field name="string">Draft</field>
+            <field name="model" search="[('model', '=', 'getmail.server')]"/>
+        </record>
     </data>
 </tryton>
