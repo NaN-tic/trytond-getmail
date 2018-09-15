@@ -7,17 +7,11 @@ from trytond.pyson import Eval, Equal, Not
 from datetime import datetime
 from email.utils import parseaddr
 from email.header import decode_header
+import easyimap
 import email
 import logging
 
 logger = logging.getLogger(__name__)
-
-try:
-    import easyimap
-except ImportError:
-    message = 'Unable to import easyimap'
-    logger.error(message)
-    raise Exception(message)
 
 __all__ = ['GetmailServer']
 
@@ -178,7 +172,7 @@ class GetmailServer(ModelSQL, ModelView):
                         server.port,
                         )
                     imapper.quit()
-                except Exception, e:
+                except Exception as e:
                     cls.raise_user_error('imap_error', e)
                 cls.raise_user_error('imap_successful')
             else:
@@ -207,7 +201,7 @@ class GetmailServer(ModelSQL, ModelView):
                     #  messages = imapper.listup(20)
                     messages = imapper.unseen(limit)
                     imapper.quit()
-                except Exception, e:
+                except Exception as e:
                     self.raise_user_error('imap_error', e)
             else:
                 self.raise_user_error('unimplemented_protocol')
