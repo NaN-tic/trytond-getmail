@@ -8,4 +8,5 @@ from . import getmail
 def register():
     Pool.register(
         getmail.GetmailServer,
+        getmail.Cron,
         module='getmail', type_='model')

@@ -26,16 +26,10 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
 
         <!-- getmail.cron -->
         <record model="ir.cron" id="cron_getmail">
-            <field name="name">GetMail</field>
-            <field name="request_user" ref="res.user_admin"/>
-            <field name="user" ref="user_getmail"/>
             <field name="active" eval="True"/>
             <field name="interval_number">1</field>
             <field name="interval_type">days</field>
-            <field name="number_calls">-1</field>
-            <field name="repeat_missed" eval="False"/>
-            <field name="model">getmail.server</field>
-            <field name="function">getmail_servers</field>
+            <field name="method">getmail.server|getmail_servers</field>
         </record>
 
         <!-- Menu Top -->

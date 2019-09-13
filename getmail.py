@@ -2,7 +2,7 @@
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
 from trytond.model import ModelView, ModelSQL, fields, Unique
-from trytond.pool import Pool
+from trytond.pool import Pool,PoolMeta
 from trytond.pyson import Eval, Equal, Not
 from datetime import datetime
 from email.utils import parseaddr
@@ -10,11 +10,26 @@ from email.header import decode_header
 import easyimap
 import email
 import logging
+from trytond.i18n import gettext
+from trytond.exceptions import UserError
+from trytond.i18n import gettext
+from trytond.exceptions import UserError
+
 
 logger = logging.getLogger(__name__)
 
-__all__ = ['GetmailServer']
+__all__ = ['GetmailServer', 'Cron']
 
+
+class Cron(metaclass=PoolMeta):
+    __name__ = 'ir.cron'
+
+    @classmethod
+    def __setup__(cls):
+        super(Cron, cls).__setup__()
+        cls.method.selection.extend([
+            ('getmail.server|getmail_servers', "Get Mail Servers"),
+        ])
 
 class GetmailServer(ModelSQL, ModelView):
     'Getmail Server'
@@ -79,17 +94,6 @@ class GetmailServer(ModelSQL, ModelView):
             ('account_uniq', Unique(t, t.username),
                 'The email account must be unique!'),
         ]
-        cls._error_messages.update({
-                'pop_successful': 'POP3 Test Connection was successful',
-                'pop_error': 'Error POP3 Server:\n%s',
-                'imap_successful': 'IMAP Test Connection was successful',
-                'imap_error': 'Error IMAP Server:\n%s',
-                'unimplemented_protocol': (
-                    'This protocol is not implemented yet.'),
-                'check_model': ('Method "getmail" not available in model '
-                    '"%(model)s" of server "%(server)s".'),
-                'check_folder': 'Don\'t available folder in Email Server.',
-                })
         cls._buttons.update({
                 'done': {
                     'invisible': Eval('state') == 'done',
@@ -173,10 +177,10 @@ class GetmailServer(ModelSQL, ModelView):
                         )
                     imapper.quit()
                 except Exception as e:
-                    cls.raise_user_error('imap_error', e)
-                cls.raise_user_error('imap_successful')
+                    raise UserError(gettext('getmail.imap_error', error=e))
+                raise UserError(gettext('getmail.imap_successful'))
             else:
-                cls.raise_user_error('unimplemented_protocol')
+                raise UserError(gettext('getmail.unimplemented_protocol'))
 
     @classmethod
     @ModelView.button
@@ -202,9 +206,9 @@ class GetmailServer(ModelSQL, ModelView):
                     messages = imapper.unseen(limit)
                     imapper.quit()
                 except Exception as e:
-                    self.raise_user_error('imap_error', e)
+                    raise UserError(gettext('getmail.imap_error', error=e))
             else:
-                self.raise_user_error('unimplemented_protocol')
+                raise UserError(gettext('getmail.unimplemented_protocol'))
             logger.info(
                 'Process %s email(s) from %s' % (
                     len(messages),
@@ -224,10 +228,10 @@ class GetmailServer(ModelSQL, ModelView):
         model_name = self.model.model
         model = Pool().get(model_name)
         if not hasattr(model, 'getmail'):
-            self.raise_user_error('check_model', {
-                    'model': self.model.rec_name,
-                    'server': self.rec_name,
-                    })
+            raise UserError(gettext('get_mail.check_model',
+                    model=self.model.rec_name,
+                    server=self.rec_name,
+                    ))
 
     @classmethod
     def getmail_servers(cls):
