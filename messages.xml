@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!-- This file is part of Tryton.  The COPYRIGHT file at the top level of
+this repository contains the full copyright notices and license terms. -->
+<tryton>
+    <data group="1">
+      <record model="ir.message" id="pop_successful">
+          <field name="text">POP3 Test Connection was successful</field>
+      </record>
+      <record model="ir.message" id="pop_error">
+          <field name="text">Error POP3 Server:\n%(error)s</field>
+      </record>
+      <record model="ir.message" id="imap_successful">
+          <field name="text">IMAP Test Connection was successful</field>
+      </record>
+      <record model="ir.message" id="imap_error">
+          <field name="text">Error IMAP Server:\n%(error)s</field>
+      </record>
+      <record model="ir.message" id="unimplemented_protocol">
+          <field name="text">This protocol is not implemented yet.</field>
+      </record>
+      <record model="ir.message" id="check_model">
+          <field name="text">Method "getmail" not available in model "%(model)s" of server "%(server)s".</field>
+      </record>
+      <record model="ir.message" id="check_folder">
+          <field name="text">Don\'t available folder in Email Server.</field>
+      </record>
+    </data>
+</tryton>
