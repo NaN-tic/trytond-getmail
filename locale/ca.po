@@ -1,48 +1,6 @@
-# 
+#
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
-
-msgctxt "error:getmail.server:"
-msgid "Don't available folder in Email Server."
-msgstr "No es troba el directori en el servidor de correu."
-
-msgctxt "error:getmail.server:"
-msgid ""
-"Error IMAP Server:\n"
-"%s"
-msgstr ""
-"Error IMAP Server:\n"
-"%s"
-
-msgctxt "error:getmail.server:"
-msgid ""
-"Error POP3 Server:\n"
-"%s"
-msgstr ""
-"Error POP3 Server:\n"
-"%s"
-
-msgctxt "error:getmail.server:"
-msgid "IMAP Test Connection was successful"
-msgstr "La connexió servidor IMAP s'ha realitzat correctament."
-
-msgctxt "error:getmail.server:"
-msgid "Method \"getmail\" not available in model \"%(model)s\" of server \"%(server)s\"."
-msgstr ""
-"El mètode \"getmail\" no es troba disponible en el model \"%(model)s\" del "
-"servidor \"%(server)s\"."
-
-msgctxt "error:getmail.server:"
-msgid "POP3 Test Connection was successful"
-msgstr "La connexió servidor POP3 s'ha realitzat correctament."
-
-msgctxt "error:getmail.server:"
-msgid "The email account must be unique!"
-msgstr "El compte del correu ha de ser únic."
-
-msgctxt "error:getmail.server:"
-msgid "This protocol is not implemented yet."
-msgstr "Aquest protocol no està implementat."
 
 msgctxt "field:getmail.server,active:"
 msgid "Active"
@@ -52,21 +10,9 @@ msgctxt "field:getmail.server,attachment:"
 msgid "Add Attachments"
 msgstr "Afegir adjunts"
 
-msgctxt "field:getmail.server,create_date:"
-msgid "Create Date"
-msgstr "Data creació"
-
-msgctxt "field:getmail.server,create_uid:"
-msgid "Create User"
-msgstr "Usuari creació"
-
 msgctxt "field:getmail.server,folder:"
 msgid "Folder"
 msgstr "Directori"
-
-msgctxt "field:getmail.server,id:"
-msgid "ID"
-msgstr "ID"
 
 msgctxt "field:getmail.server,limit:"
 msgid "Limit"
@@ -96,10 +42,6 @@ msgctxt "field:getmail.server,priority:"
 msgid "Server Priority"
 msgstr "Prioritat servidor"
 
-msgctxt "field:getmail.server,rec_name:"
-msgid "Name"
-msgstr "Nom"
-
 msgctxt "field:getmail.server,server:"
 msgid "Server"
 msgstr "Servidor"
@@ -123,14 +65,6 @@ msgstr "Tipus"
 msgctxt "field:getmail.server,username:"
 msgid "User Name"
 msgstr "Nom usuari"
-
-msgctxt "field:getmail.server,write_date:"
-msgid "Write Date"
-msgstr "Data modificació"
-
-msgctxt "field:getmail.server,write_uid:"
-msgid "Write User"
-msgstr "Usuari modificació"
 
 msgctxt "help:getmail.server,attachment:"
 msgid "Fetches mail with attachments if true."
@@ -160,9 +94,49 @@ msgctxt "model:ir.action,name:act_getmail_server_form"
 msgid "Servers"
 msgstr "Servidors"
 
-msgctxt "model:ir.cron,name:cron_getmail"
-msgid "GetMail"
-msgstr "GetMail"
+msgctxt "model:ir.message,text:check_folder"
+msgid "Don't available folder in Email Server."
+msgstr ""
+
+msgctxt "model:ir.message,text:check_model"
+msgid "Method \"getmail\" not available in model \"%(model)s\" of server \"%(server)s\"."
+msgstr ""
+
+msgctxt "model:ir.message,text:imap_error"
+msgid "Error IMAP Server:\\n%(error)s"
+msgstr ""
+
+msgctxt "model:ir.message,text:imap_successful"
+msgid "IMAP Test Connection was successful"
+msgstr ""
+
+msgctxt "model:ir.message,text:pop_error"
+msgid "Error POP3 Server: %(error)s"
+msgstr ""
+
+msgctxt "model:ir.message,text:pop_successful"
+msgid "POP3 Test Connection was successful"
+msgstr ""
+
+msgctxt "model:ir.message,text:unimplemented_protocol"
+msgid "This protocol is not implemented yet."
+msgstr ""
+
+msgctxt "model:ir.model.button,string:done_button"
+msgid "Confirm"
+msgstr "Confirmació"
+
+msgctxt "model:ir.model.button,string:draft_button"
+msgid "Draft"
+msgstr "Esborrany"
+
+msgctxt "model:ir.model.button,string:get_server_emails_button"
+msgid "Get Emails"
+msgstr ""
+
+msgctxt "model:ir.model.button,string:get_server_test_button"
+msgid "Test"
+msgstr "Test"
 
 msgctxt "model:ir.ui.menu,name:menu_getmail"
 msgid "Getmail"
@@ -176,10 +150,6 @@ msgctxt "model:res.group,name:group_getmail"
 msgid "Getmail"
 msgstr "Administració Getmail"
 
-msgctxt "model:res.user,name:user_getmail"
-msgid "Cron GetMail"
-msgstr "Cron GetMail"
-
 msgctxt "selection:getmail.server,state:"
 msgid "Done"
 msgstr "Confirmat"
@@ -192,25 +162,13 @@ msgctxt "selection:getmail.server,type:"
 msgid "IMAP Server"
 msgstr "Servidor IMAP"
 
-msgctxt "view:getmail.server:"
-msgid "Confirm"
-msgstr "Confirma"
-
-msgctxt "view:getmail.server:"
-msgid "Draft"
-msgstr "Esborrany"
+msgctxt "selection:ir.cron,method:"
+msgid "Get Mail Servers"
+msgstr ""
 
 msgctxt "view:getmail.server:"
 msgid "General"
 msgstr "General"
-
-msgctxt "view:getmail.server:"
-msgid "Get Emails"
-msgstr "Descarrega correus"
-
-msgctxt "view:getmail.server:"
-msgid "Getmail"
-msgstr "Getmail"
 
 msgctxt "view:getmail.server:"
 msgid "Login Information"
@@ -227,7 +185,3 @@ msgstr "Paràmetres"
 msgctxt "view:getmail.server:"
 msgid "Server Information"
 msgstr "Informació servidor"
-
-msgctxt "view:getmail.server:"
-msgid "Test"
-msgstr "Test"
