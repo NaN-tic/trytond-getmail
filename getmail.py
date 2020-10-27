@@ -12,8 +12,6 @@ import email
 import logging
 from trytond.i18n import gettext
 from trytond.exceptions import UserError
-from trytond.i18n import gettext
-from trytond.exceptions import UserError
 
 
 logger = logging.getLogger(__name__)
