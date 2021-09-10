@@ -1,7 +1,7 @@
 # This file is part of getmail module for Tryton.
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
-from trytond.model import ModelView, ModelSQL, fields, Unique
+from trytond.model import ModelView, ModelSQL, DeactivableMixin, fields, Unique
 from trytond.pool import Pool,PoolMeta
 from trytond.pyson import Eval, Equal, Not
 from datetime import datetime
@@ -29,13 +29,11 @@ class Cron(metaclass=PoolMeta):
             ('getmail.server|getmail_servers', "Get Mail Servers"),
         ])
 
-class GetmailServer(ModelSQL, ModelView):
+
+class GetmailServer(DeactivableMixin, ModelSQL, ModelView):
     'Getmail Server'
     __name__ = 'getmail.server'
     name = fields.Char('Name', required=True)
-    active = fields.Boolean('Active', states={
-            'readonly': Not(Equal(Eval('state'), 'draft')),
-            }, depends=['state'])
     state = fields.Selection([
             ('draft', 'Draft'),
             ('done', 'Done'),
@@ -92,6 +90,10 @@ class GetmailServer(ModelSQL, ModelView):
             ('account_uniq', Unique(t, t.username),
                 'The email account must be unique!'),
         ]
+        cls.active.states.update({
+                'readonly': Not(Equal(Eval('state'), 'draft')),
+                })
+        cls.active.depends.append('state')
         cls._buttons.update({
                 'done': {
                     'invisible': Eval('state') == 'done',
@@ -109,10 +111,6 @@ class GetmailServer(ModelSQL, ModelView):
     @staticmethod
     def default_state():
         return 'draft'
-
-    @staticmethod
-    def default_active():
-        return True
 
     @staticmethod
     def default_priority():
