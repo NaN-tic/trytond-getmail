@@ -93,7 +93,7 @@ class GetmailServer(DeactivableMixin, ModelSQL, ModelView):
         cls.active.states.update({
                 'readonly': Not(Equal(Eval('state'), 'draft')),
                 })
-        cls.active.depends.append('state')
+        cls.active.depends.add('state')
         cls._buttons.update({
                 'done': {
                     'invisible': Eval('state') == 'done',
