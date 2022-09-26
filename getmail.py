@@ -69,7 +69,7 @@ class GetmailServer(DeactivableMixin, ModelSQL, ModelView):
     username = fields.Char('User Name', required=True, states={
             'readonly': Not(Equal(Eval('state'), 'draft')),
             }, depends=['state'])
-    password = fields.Char('Password', required=True, states={
+    password = fields.Char('Password', required=True, strip=False, states={
             'readonly': Not(Equal(Eval('state'), 'draft')),
             }, depends=['state'])
     note = fields.Text('Description')
