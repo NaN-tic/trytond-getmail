@@ -12,6 +12,7 @@ import email
 import logging
 from trytond.i18n import gettext
 from trytond.exceptions import UserError
+from trytond.transaction import Transaction
 
 
 logger = logging.getLogger(__name__)
@@ -237,7 +238,9 @@ class GetmailServer(DeactivableMixin, ModelSQL, ModelView):
         - State: Done
         """
         servers = cls.search([('state', '=', 'done'), ('active', '=', True)])
-        cls.get_server_emails(servers)
+        with Transaction.set_context(queue_name='electronic_mail'):
+            for server in servers:
+                cls.__queue__.get_server_emails([server])
         return True
 
     @staticmethod
