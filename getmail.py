@@ -1,15 +1,16 @@
 # This file is part of getmail module for Tryton.
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
-from trytond.model import ModelView, ModelSQL, DeactivableMixin, fields, Unique
-from trytond.pool import Pool,PoolMeta
-from trytond.pyson import Eval, Equal, Not
 from datetime import datetime
 from email.utils import parseaddr
 from email.header import decode_header
 import easyimap
 import email
 import logging
+from trytond.config import config
+from trytond.model import ModelView, ModelSQL, DeactivableMixin, fields, Unique
+from trytond.pool import Pool,PoolMeta
+from trytond.pyson import Eval, Equal, Not
 from trytond.i18n import gettext
 from trytond.exceptions import UserError
 from trytond.transaction import Transaction
@@ -17,7 +18,7 @@ from trytond.transaction import Transaction
 
 logger = logging.getLogger(__name__)
 
-__all__ = ['GetmailServer', 'Cron']
+QUEUE_NAME = config.get('electronic_mail', 'queue_name', default='default')
 
 
 class Cron(metaclass=PoolMeta):
@@ -238,7 +239,7 @@ class GetmailServer(DeactivableMixin, ModelSQL, ModelView):
         - State: Done
         """
         servers = cls.search([('state', '=', 'done'), ('active', '=', True)])
-        with Transaction.set_context(queue_name='electronic_mail'):
+        with Transaction.set_context(queue_name=QUEUE_NAME):
             for server in servers:
                 cls.__queue__.get_server_emails([server])
         return True
