@@ -239,7 +239,7 @@ class GetmailServer(DeactivableMixin, ModelSQL, ModelView):
         - State: Done
         """
         servers = cls.search([('state', '=', 'done'), ('active', '=', True)])
-        with Transaction.set_context(queue_name=QUEUE_NAME):
+        with Transaction().set_context(queue_name=QUEUE_NAME):
             for server in servers:
                 cls.__queue__.get_server_emails([server])
         return True
