@@ -71,7 +71,7 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
 
         <!-- Access -->
         <record model="ir.model.access" id="access_getmail_server_admin">
-            <field name="model" search="[('model', '=', 'getmail.server')]"/>
+            <field name="model">getmail.server</field>
             <field name="group" ref="group_getmail"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
@@ -79,7 +79,7 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
             <field name="perm_delete" eval="True"/>
         </record>
         <record model="ir.model.access" id="access_getmail_server">
-            <field name="model" search="[('model', '=', 'getmail.server')]"/>
+            <field name="model">getmail.server</field>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
             <field name="perm_create" eval="False"/>
@@ -89,22 +89,22 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
         <record model="ir.model.button" id="done_button">
             <field name="name">done</field>
             <field name="string">Confirm</field>
-            <field name="model" search="[('model', '=', 'getmail.server')]"/>
+            <field name="model">getmail.server</field>
         </record>
         <record model="ir.model.button" id="get_server_test_button">
             <field name="name">get_server_test</field>
             <field name="string">Test</field>
-            <field name="model" search="[('model', '=', 'getmail.server')]"/>
+            <field name="model">getmail.server</field>
         </record>
         <record model="ir.model.button" id="get_server_emails_button">
             <field name="name">get_server_emails</field>
             <field name="string">Get Emails</field>
-            <field name="model" search="[('model', '=', 'getmail.server')]"/>
+            <field name="model">getmail.server</field>
         </record>
         <record model="ir.model.button" id="draft_button">
             <field name="name">draft</field>
             <field name="string">Draft</field>
-            <field name="model" search="[('model', '=', 'getmail.server')]"/>
+            <field name="model">getmail.server</field>
         </record>
     </data>
 </tryton>
