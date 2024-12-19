@@ -45,7 +45,7 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
     <label name="state"/>
     <field name="state"/>
     <group col="4" colspan="3" id="buttons">
-        <button name="done" icon="tryton-go-next"/>
+        <button name="done" icon="tryton-forward"/>
         <button name="draft" icon="tryton-clear"/>
         <button name="get_server_emails" icon="tryton-ok"/>
         <button name="get_server_test" icon="tryton-ok"/>
