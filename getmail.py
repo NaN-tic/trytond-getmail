@@ -160,10 +160,6 @@ class GetmailServer(DeactivableMixin, ModelSQL, ModelView):
     @ModelView.button
     def get_server_test(cls, servers):
         '''Get server connection'''
-        if not PRODUCTION_ENV:
-            logger.warning('Production mode is not enabled.')
-            return
-
         for server in servers:
             if server.type == 'imap':
                 folder = server.folder or 'INBOX'
@@ -189,6 +185,9 @@ class GetmailServer(DeactivableMixin, ModelSQL, ModelView):
     @ModelView.button
     def get_server_emails(self, servers):
         '''Get emails from server and call getmail method'''
+        if not PRODUCTION_ENV:
+            logger.warning('Production mode is not enabled.')
+            return
 
         for server in servers:
             messages = []
