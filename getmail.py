@@ -19,6 +19,7 @@ from trytond.transaction import Transaction
 logger = logging.getLogger(__name__)
 
 QUEUE_NAME = config.get('electronic_mail', 'queue_name', default='default')
+PRODUCTION_ENV = config.getboolean('database', 'production', default=False)
 
 
 class Cron(metaclass=PoolMeta):
@@ -184,6 +185,10 @@ class GetmailServer(DeactivableMixin, ModelSQL, ModelView):
     @ModelView.button
     def get_server_emails(self, servers):
         '''Get emails from server and call getmail method'''
+        if not PRODUCTION_ENV:
+            logger.warning('Production mode is not enabled.')
+            return
+
         for server in servers:
             messages = []
             limit = server.limit or 10
