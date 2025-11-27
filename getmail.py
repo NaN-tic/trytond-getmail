@@ -13,6 +13,7 @@ from trytond.pool import Pool,PoolMeta
 from trytond.pyson import Eval, Equal, Not
 from trytond.i18n import gettext
 from trytond.exceptions import UserError
+from trytond.model.exceptions import ValidationError
 from trytond.transaction import Transaction
 
 
@@ -226,7 +227,7 @@ class GetmailServer(DeactivableMixin, ModelSQL, ModelView):
         model_name = self.model.model
         model = Pool().get(model_name)
         if not hasattr(model, 'getmail'):
-            raise UserError(gettext('get_mail.check_model',
+            raise ValidationError(gettext('get_mail.check_model',
                     model=self.model.rec_name,
                     server=self.rec_name,
                     ))
