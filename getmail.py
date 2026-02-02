@@ -227,7 +227,7 @@ class GetmailServer(DeactivableMixin, ModelSQL, ModelView):
         model_name = self.model.model
         model = Pool().get(model_name)
         if not hasattr(model, 'getmail'):
-            raise ValidationError(gettext('get_mail.check_model',
+            raise ValidationError(gettext('getmail.check_model',
                     model=self.model.rec_name,
                     server=self.rec_name,
                     ))
