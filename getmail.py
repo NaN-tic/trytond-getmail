@@ -213,7 +213,7 @@ class GetmailServer(DeactivableMixin, ModelSQL, ModelView):
                     len(messages),
                     server.name,
                 ))
-            model_name = server.model.model
+            model_name = server.model.name
             model = Pool().get(model_name)
             model.getmail(server, messages)
 
@@ -224,7 +224,7 @@ class GetmailServer(DeactivableMixin, ModelSQL, ModelView):
 
     def check_model(self):
         '''Check model must contain getmail method.'''
-        model_name = self.model.model
+        model_name = self.model.name
         model = Pool().get(model_name)
         if not hasattr(model, 'getmail'):
             raise ValidationError(gettext('getmail.check_model',
