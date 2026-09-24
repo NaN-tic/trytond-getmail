@@ -7,10 +7,6 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
         <record model="res.group" id="group_getmail">
             <field name="name">Getmail</field>
         </record>
-        <record model="res.user-res.group" id="user_admin_group_getmail">
-            <field name="user" ref="res.user_admin"/>
-            <field name="group" ref="group_getmail"/>
-        </record>
 
         <!-- getmail.user -->
         <record model="res.user" id="user_getmail">
